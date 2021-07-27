@@ -1,0 +1,79 @@
+{
+   "openapi":"3.0.0",
+   "info":{
+     "title":"Pokemon and Digimons Api",
+     "description":"This api as container pokemons and digimons infors",
+     "terms":"We dont have terms in moment",
+     "contact":"example@email",
+     "version":"1.0.0"
+   },
+   "servers":[
+       {
+           "url":"http://localhost:3333/v1",
+           "description":"url no test"
+       }
+   ],
+   "paths":{
+       "/pokemons":{
+           "get":{
+               "summary":"Get list pokemons",
+               "description":"This route is response wit pokemons",
+               "tags":["Pokemons"],
+               "security":[{"bewarerAuth":[]}],
+               "requestBody":{
+                   "content":{
+                       "application/json":{
+                           "schema":{
+                              "$ref":"#/components/schemas/Pokemons"
+                           },
+                           "examples":{
+                                "pokemon":{
+                                    "value":{
+                                        "name":"Pikachu"         
+                                        }
+                                }
+                            }
+                        }                    
+                   }
+               },
+               "responses":{
+                   "200":{
+                       "description":"This is a pokemon",
+                       "content":{ 
+                           "application/json":{
+                                "schema":{
+                                    "type":"object",                                
+                                    "$ref":"#/components/schemas/Pokemons"
+                                    
+                          
+                                }
+                            }
+                        }
+                   },
+                   "404":{
+                       "description":"Pokemon not found"
+                   }
+               }
+           }
+       }
+   },
+   "components":{
+       "schemas":{
+           "Pokemons":{
+               "type":"object",
+               "properties":{
+                   "name":{
+                       "type":"string"
+                   }
+               }
+           }
+       },
+       "securitySchemes":{
+           "bearerAuth":{
+               "type":"http",
+               "scheme":"bearer",
+               "bearerFormat":"JWT"
+           }
+       }
+   }
+}
