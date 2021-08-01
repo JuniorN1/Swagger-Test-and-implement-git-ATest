@@ -1,15 +1,15 @@
-import {Router,Response,Request} from 'express';
-const router = Router();
+import {Router} from 'express';
 import swaggerUi from 'swagger-ui-express';
+import pokemonController from './controller/pokemon';
+
+const router = Router();
+
 const swaggerDocument = require('./swagger.json');
 
-router.use('/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-router.get('/v1/pokemons',function(request:Request,response:Response){
+const PokemonController = new pokemonController();
 
-    return response.json({
-        name:"Pikachu",
-        type:"Eletric"
-        
-    }).status(200)
-})
+router.use('/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+router.get('/v1/pokemons',PokemonController.index);
+router.get('/v1/pokemon/:name',PokemonController.show);
+
 export{router}
