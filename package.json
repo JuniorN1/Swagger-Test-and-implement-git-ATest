@@ -9,7 +9,7 @@
     "execute_migrate": "knex migrate:latest",
     "create_seeder": "knex seed:make",
     "execute_seeder": "knex seed:run",
-    "test": "cross-env NODE_ENV='test' jest -i"
+    "test": "cross-env NODE_ENV='test' jest -i  --detectOpenHandles"
   },
   "dependencies": {
     "@types/express": "^4.17.13",
