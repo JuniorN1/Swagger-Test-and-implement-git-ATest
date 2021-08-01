@@ -1,19 +1,11 @@
 import request from 'supertest';
 
-import { getConnection } from 'connect';
-import { app } from '../app';
-import createConnection from '../database';
+
+import  app  from '../app';
+
 
 describe("Pokemos", ()=>{
-    beforeAll(async()=>{
-        const connection =await createConnection();
-        await connection.runMigrations();
-    })
-    afterAll(async()=>{
-        const connection = getConnection();
-        await connection.dropDatabase();
-        await connection.close();
-    })
+ 
     it("if get pokemon?",async ()=>{
         const response = await request(app)
         .get("/v1/pokemons");        
