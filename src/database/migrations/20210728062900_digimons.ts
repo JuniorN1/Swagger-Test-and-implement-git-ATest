@@ -8,6 +8,8 @@ export async function up(knex: Knex): Promise<void> {
         table.string('image').notNullable(); 
         table.string('description').notNullable(); 
         table.string('season').nullable(); 
+        table.integer('type').references('digimon_type'); 
+
       
       });
 }
