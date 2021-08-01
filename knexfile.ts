@@ -7,19 +7,21 @@ interface KnexConfig {
 const knexConfig: KnexConfig = {
 
   development: {
-    client: "sqlite3",
+    client: 'mysql',
     connection: {
-      filename: "./src/database/database.sql"
+      host : '127.0.0.1',
+      user : 'user',
+      password : 'pass',
+      database : 'api_db'
     },
     migrations: {
       directory: './src/database/migrations',
     },
     seeds: {
-      directory: './src/database/seeds',
+      directory: './src/database/seeders',
     },
-    useNullAsDefault: true
-  },
-
+  
+  },    
   staging: {
     client: "postgresql",
     connection: {
