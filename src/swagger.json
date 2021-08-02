@@ -17,35 +17,22 @@
        "/pokemons":{
            "get":{
                "summary":"Get list pokemons",
-               "description":"This route is response wit pokemons",
+               "description":"This route is response list pokemons",
                "tags":["Pokemons"],
                "security":[{"bewarerAuth":[]}],
-               "requestBody":{
-                   "content":{
-                       "application/json":{
-                           "schema":{
-                              "$ref":"#/components/schemas/Pokemons"
-                           },
-                           "examples":{
-                                "pokemon":{
-                                    "value":{
-                                        "name":"Pikachu"         
-                                        }
-                                }
-                            }
-                        }                    
-                   }
-               },
+               "produces": [
+                "application/xml",
+                "application/json"
+              ],          
                "responses":{
                    "200":{
-                       "description":"This is a pokemon",
+                       "description":"This is a list pokemon",
                        "content":{ 
                            "application/json":{
                                 "schema":{
                                     "type":"object",                                
                                     "$ref":"#/components/schemas/Pokemons"
-                                    
-                          
+                                                              
                                 }
                             }
                         }
@@ -55,16 +42,70 @@
                    }
                }
            }
-       }
+       },
+       "/pokemon/{pokemon}":{
+        "get":{
+            "summary":"Get a specific pokemons",
+            "description":"This endpoint is response to return specific search the pokemon name",
+            "tags":["Pokemons"],
+            "security":[{"bewarerAuth":[]}],
+            "produces": [
+             "application/xml",
+             "application/json"
+           ],    
+           "parameters": [
+            {
+              "name": "pokemon",
+              "in": "path",
+              "description": "Search a pokemon to name",
+              "required": true,
+              "type": "string"
+            }             
+           ],      
+            "responses":{
+                "200":{
+                    "description":"This is a pokemon",
+                    "content":{ 
+                        "application/json":{
+                             "schema":{
+                                 "type":"object",                                
+                                 "$ref":"#/components/schemas/Pokemons"
+                                                           
+                             }
+                         }
+                     }
+                },
+                "404":{
+                    "description":"Pokemon not found"
+                }
+            }
+        }
+    }
    },
+   
    "components":{
        "schemas":{
            "Pokemons":{
                "type":"object",
                "properties":{
+                    "id":{
+                        "type":"number"
+                    },
                    "name":{
                        "type":"string"
-                   }
+                   },
+                   "image":{
+                       "type":"string"
+                   },
+                   "description":{
+                       "type":"string"
+                   },
+                   "season":{
+                       "type":"string"
+                   },
+                   "type":{
+                       "type":"string"
+                   }                     
                }
            }
        },
