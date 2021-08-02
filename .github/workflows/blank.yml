@@ -33,7 +33,7 @@ jobs:
       #   run: docker-compose up -d
       ... some steps before set-up MySQL ...
       - name: Set up MySQL
-      - uses: mysql:5.7
+      - uses: mirromutth/mysql-action@v1.1
         with:
             host port: 3036 # Optional, default value is 3306. The port of host
             container port: 3036 # Optional, default value is 3306. The port of container
