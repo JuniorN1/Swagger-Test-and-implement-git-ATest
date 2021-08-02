@@ -7,6 +7,8 @@
     "start": "ts-node-dev --transpile-only --ignore-watch node_modules ./src/index.ts",
     "create_migrate": "knex migrate:make ",
     "execute_migrate": "knex migrate:latest",
+    "execute_reset": "knex migrate:rollback",
+    "refresh":"knex migrate:rollback && knex migrate:latest &&  knex seed:run",
     "create_seeder": "knex seed:make",
     "execute_seeder": "knex seed:run",
     "test": "cross-env NODE_ENV='test' jest -i  --detectOpenHandles"

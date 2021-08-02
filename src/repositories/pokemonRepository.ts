@@ -19,8 +19,9 @@ class pokemonRepository{
        
         try{
             
-            const result:PokemonProps[] = await  connection('pokemons')
-            .innerJoin('pokemon_type', 'pokemon_type.id', '=', 'pokemons.type')
+            const result:PokemonProps[] = await  connection('pokemon_type_pivo')
+            .innerJoin('pokemons', 'pokemons.id', '=', 'pokemon_type_pivo.pokemon_id')
+            .innerJoin('pokemon_type', 'pokemon_type.id', '=', 'pokemon_type_pivo.type_id')
             .select('pokemons.*','pokemon_type.type')
             .offset(offset)
             .limit(limit);  
@@ -38,8 +39,9 @@ class pokemonRepository{
     getAnPokemon = async (name:string)=>{
         try{
             
-            const result:PokemonProps[] = await  connection('pokemons')
-            .innerJoin('pokemon_type', 'pokemon_type.id', '=', 'pokemons.type')
+            const result:PokemonProps[] = await   connection('pokemon_type_pivo')
+            .innerJoin('pokemons', 'pokemons.id', '=', 'pokemon_type_pivo.pokemon_id')
+            .innerJoin('pokemon_type', 'pokemon_type.id', '=', 'pokemon_type_pivo.type_id')
             .select('pokemons.*','pokemon_type.type')
             .where('name',name);  
        
