@@ -4,16 +4,16 @@ import request from 'supertest';
 import  app  from '../app';
 
 
-describe("Pokemos", ()=>{
+describe("Digimons", ()=>{
  
-    it("if get pokemon?",async ()=>{
+    it("list digimons",async ()=>{
         const response = await request(app)
-        .get("/v1/pokemons");        
+        .get("/v1/digimons");        
         expect(response.status).toBe(200);       
     });    
-    it("if get especific pokemon?",async ()=>{
+    it("if get especific digimon",async ()=>{
         const response = await request(app)
-        .get("/v1/pokemon/pokemon");        
+        .get("/v1/digimon/digimon");        
         expect(response.status).toBe(200);       
     });  
 })
