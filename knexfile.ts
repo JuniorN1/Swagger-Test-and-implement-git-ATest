@@ -9,7 +9,7 @@ const knexConfig: KnexConfig = {
   development: {
     client: 'mysql',
     connection: {
-      host : '127.0.0.1',
+      host : 'localhost',
       user : 'user',
       password : 'pass',
       database : 'api_db'
