@@ -28,7 +28,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Yarn Install
         run: yarn
-
+      # Runs a single command using the runners shell
+      - name: docker up
+        run: docker-compose up
       # ... some steps before set-up MySQL ...
       # - name: Set up MySQL
       # - uses: mysql:5.7
