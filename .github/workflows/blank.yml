@@ -31,7 +31,7 @@ jobs:
       # Runs a single command using the runners shell
       # - name: docker up
       #   run: docker-compose up -d
-      ... some steps before set-up MySQL ...
+      #... some steps before set-up MySQL ...
       - name: Set up MySQL
       - uses: mirromutth/mysql-action@v1.1
         with:
