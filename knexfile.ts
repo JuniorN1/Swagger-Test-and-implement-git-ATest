@@ -1,5 +1,5 @@
 // Update with your config settings.
-
+require('dotenv').config();
 interface KnexConfig {
   [key: string]: object;
 };
@@ -17,7 +17,8 @@ const knexConfig: KnexConfig = {
     },
     useNullAsDefault:true,
   },
-    
+   
+ 
   staging: {
     client: "postgresql",
     connection: {
