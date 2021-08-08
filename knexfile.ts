@@ -7,21 +7,17 @@ interface KnexConfig {
 const knexConfig: KnexConfig = {
 
   development: {
-    client: 'mysql',
-    connection: {
-      host : 'localhost',
-      user : 'user',
-      password : 'pass',
-      database : 'api_db'
-    },
+    client: 'sqlite3',
+    connection: process.env.DB_TEST,  
     migrations: {
       directory: './src/database/migrations',
     },
     seeds: {
       directory: './src/database/seeders',
     },
-  
-  },    
+    useNullAsDefault:true,
+  },
+    
   staging: {
     client: "postgresql",
     connection: {
@@ -39,19 +35,19 @@ const knexConfig: KnexConfig = {
   },
 
   production: {
-    client: "postgresql",
+    client: 'mysql',
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
-    },
-    pool: {
-      min: 2,
-      max: 10
+      host : process.env.HOST_PROD,
+      user : process.env.USER_PROD,
+      password :process.env.PASS_PROD,
+      database : process.env.DB_PROD
     },
     migrations: {
-      tableName: "knex_migrations"
-    }
+      directory: './src/database/migrations',
+    },
+    seeds: {
+      directory: './src/database/seeders',
+    },
   }
 
 };
