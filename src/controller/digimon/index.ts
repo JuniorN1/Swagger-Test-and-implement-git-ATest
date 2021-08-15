@@ -1,12 +1,6 @@
 import { Request, Response } from "express";
 import digimonRepository from "../../repositories/digimonRepository";
-
-interface ParamsProps{
-    params:[
-        offset:number,
-        limit:number,
-    ]
-}
+import {PaginateProps} from '../../typings';
 
 class digimonController{
 
@@ -14,20 +8,18 @@ class digimonController{
         const {
             offset,
             limit
-        } = request.params;
+        } = request.query as unknown as PaginateProps;
         
         const DigimonRepository = new digimonRepository();
   
-        const pokemons = await DigimonRepository.getDigimons(0, 1);
+        const pokemons = await DigimonRepository.getDigimons(offset, limit);
 
         return response.json(pokemons);
        
 
     }
     async show(request:Request,response:Response){
-        const {
-            name
-        }  = request.params;
+        const name = request.params.name as unknown as string;
         
         const DigimonRepository = new digimonRepository();
   

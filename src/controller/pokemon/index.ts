@@ -1,12 +1,7 @@
 import { Request, Response } from "express";
 import pokemonRepository from "../../repositories/pokemonRepository";
+import { PaginateProps } from "../../typings";
 
-interface ParamsProps{
-    params:[
-        offset:number,
-        limit:number,
-    ]
-}
 
 class pokemonController{
 
@@ -14,7 +9,7 @@ class pokemonController{
         const {
             offset,
             limit
-        } = request.params;
+        } = request.params as unknown as PaginateProps;
         
         const PokemonRepository = new pokemonRepository();
   
@@ -25,9 +20,7 @@ class pokemonController{
 
     }
     async show(request:Request,response:Response){
-        const {
-            name
-        }  = request.params;
+        const name = request.params.name as unknown as string;
         
         const PokemonRepository = new pokemonRepository();
   
