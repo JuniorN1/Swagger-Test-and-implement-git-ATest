@@ -23,8 +23,7 @@ class digimonRepository{
             .innerJoin('digimon_type', 'digimon_type.id', '=', 'digimon_type_pivo.type_id')
             .select('digimons.*','digimon_type.type')
             .offset(offset)
-            .limit(limit);  
-       
+            .limit(limit);   
             return result;
 
         }catch(error){
