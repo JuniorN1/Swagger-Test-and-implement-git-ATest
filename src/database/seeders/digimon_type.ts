@@ -5,7 +5,7 @@ export async function seed(knex: Knex): Promise<void> {
     // Deletes ALL existing entries
     await knex("digimon_type").del();
     const data ={   
-        type:faker.name.firstName(),
+        type:"anime",
       
     };
     // Inserts seed entries

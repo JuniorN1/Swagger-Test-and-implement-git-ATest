@@ -9,11 +9,11 @@ class pokemonController{
         const {
             offset,
             limit
-        } = request.params as unknown as PaginateProps;
+        } = request.query as unknown as PaginateProps;
         
         const PokemonRepository = new pokemonRepository();
   
-        const pokemons = await PokemonRepository.getPokemons(0, 1);
+        const pokemons = await PokemonRepository.getPokemons(offset, limit);
 
         return response.json(pokemons);
        

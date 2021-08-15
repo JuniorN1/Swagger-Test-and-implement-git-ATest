@@ -3,22 +3,65 @@ import request from 'supertest';
 import connection from '../connection';
 import  app  from '../app';
 
-
 describe("Pokemos", ()=>{
     afterAll(async () => {
             connection.destroy();
         }
     );
-    it("if get pokemon?",async ()=>{
+    it("user can list all pokemon with correct params",async ()=>{
         const response = await request(app)
-        .get("/v1/pokemons");        
-        expect(response.status).toBe(200);    
+        .get("/v1/pokemons")
+        .query({ limit: 10,offset:0 });          
+        expect(response.status).toBe(200);
+        const result =   JSON.parse(response.text);  
+        expect(result).toEqual(
+            [
+                {
+                  "id": 1,
+                  "name": "pokemon",
+                  "image": "https://img.icons8.com/color/512/000000/pokeball-2.png",
+                  "description": "The original Pokémon",
+                  "season": "season 1",
+                  "type":"anime",
+                }
+              ]
+        );    
  
     });    
-    it("if get especific pokemon?",async ()=>{
+    it("user search specific pokemon with correct params",async ()=>{
         const response = await request(app)
         .get("/v1/pokemon/pokemon");        
         expect(response.status).toBe(200);
         
     });  
+    it("user can list all pokemon with incorrect params",async ()=>{
+        const response = await request(app)
+        .get("/v1/pokemons")
+        .query({limit:"sdadas",offset:"sdsad"}); 
+        expect(response.status).toBe(200);       
+        expect(response.text).toContain("ValidationError");  
+    
+    });    
+    it("user search pokemon with incorrect params",async ()=>{
+        const response = await request(app)
+        .get("/v1/pokemon/");        
+        expect(response.status).toBe(404);  
+            
+    }); 
+
+    it("user can list all pokemon with offset not exist",async ()=>{
+        const response = await request(app)
+        .get("/v1/pokemons")
+        .query({limit:10,offset:800}); 
+        expect(response.status).toBe(200);       
+        expect(response.text).toContain("[]");  
+    
+    });    
+    it("user search a specific pokemon whats not exist in database",async ()=>{
+        const response = await request(app)
+        .get("/v1/pokemon/NotExistPokemon");        
+        expect(response.status).toBe(200);  
+        expect(response.text).toContain("[]");  
+            
+    }); 
 })

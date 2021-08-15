@@ -9,7 +9,7 @@ class digimonController{
             offset,
             limit
         } = request.query as unknown as PaginateProps;
-        
+
         const DigimonRepository = new digimonRepository();
   
         const pokemons = await DigimonRepository.getDigimons(offset, limit);
