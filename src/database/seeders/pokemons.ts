@@ -5,7 +5,7 @@ export async function seed(knex: Knex): Promise<void> {
     await knex("pokemons").del();
 
     const data ={      
-        name: faker.name.firstName(),
+        name: "pokemon",
         image:faker.image.imageUrl(),
         description: faker.lorem.sentence(), 
         season:faker.name.firstName()

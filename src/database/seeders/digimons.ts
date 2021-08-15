@@ -5,7 +5,7 @@ export async function seed(knex: Knex): Promise<void> {
     // Deletes ALL existing entries
     await knex("digimons").del();
     const data ={      
-        name: faker.name.firstName(),
+        name: "digimon",
         image:faker.image.imageUrl(),
         description: faker.lorem.sentence(), 
         season:faker.name.firstName()

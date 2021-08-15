@@ -44,44 +44,115 @@
            }
        },
        "/pokemon/{pokemon}":{
-        "get":{
-            "summary":"Get a specific pokemons",
-            "description":"This endpoint is response to return specific search the pokemon name",
-            "tags":["Pokemons"],
-            "security":[{"bewarerAuth":[]}],
-            "produces": [
-             "application/xml",
-             "application/json"
-           ],    
-           "parameters": [
-            {
-              "name": "pokemon",
-              "in": "path",
-              "description": "Search a pokemon to name",
-              "required": true,
-              "type": "string"
-            }             
-           ],      
-            "responses":{
-                "200":{
-                    "description":"This is a pokemon",
-                    "content":{ 
-                        "application/json":{
-                             "schema":{
-                                 "type":"object",                                
-                                 "$ref":"#/components/schemas/Pokemons"
-                                                           
-                             }
-                         }
-                     }
-                },
-                "404":{
-                    "description":"Pokemon not found"
+            "get":{
+                "summary":"Get a specific pokemons",
+                "description":"This endpoint is response to return specific search the pokemon name",
+                "tags":["Pokemons"],
+                "security":[{"bewarerAuth":[]}],
+                "produces": [
+                "application/xml",
+                "application/json"
+            ],    
+            "parameters": [
+                {
+                "name": "pokemon",
+                "in": "path",
+                "description": "Search a pokemon to name",
+                "required": true,
+                "type": "string"
+                }             
+            ],      
+                "responses":{
+                    "200":{
+                        "description":"This is a pokemon",
+                        "content":{ 
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",                                
+                                    "$ref":"#/components/schemas/Pokemons"
+                                                            
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description":"Pokemon not found"
+                    }
+                }
+            }
+        },
+        "/digimons":{
+            "get":{
+                "summary":"show list digimons",
+                "description":"This endpoint is response to return list digimons",
+                "tags":["Digimons"],
+                "security":[{"bewarerAuth":[]}],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],   
+      
+                "responses":{
+                    "200":{
+                        "description":"List of Digimons",
+                        "content":{ 
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",                                
+                                    "$ref":"#/components/schemas/Digimons"
+                                                            
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description":"Digimon not found"
+                    }
+                }
+            }
+        },
+        "/digimon/{digimon}":{
+            "get":{
+                "summary":"search digimon by name",
+                "description":"This endpoint is response to return a especific digimon",
+                "tags":["Digimons"],
+                "security":[{"bewarerAuth":[]}],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ], 
+                "parameters": [
+                    {
+                    "name": "digimon",
+                    "in": "path",
+                    "description": "Search a Digimon to name",
+                    "required": true,
+                    "type": "string"
+                    }             
+                ],    
+                "responses":{
+                    "200":{
+                        "description":"Search a Digimon",
+                        "content":{ 
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",                                
+                                    "$ref":"#/components/schemas/Digimons"
+                                                            
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description":"Digimon not found"
+                    }
                 }
             }
         }
-    }
+  
    },
+
+
    
    "components":{
        "schemas":{
@@ -107,7 +178,32 @@
                        "type":"string"
                    }                     
                }
-           }
+           },
+           "Digimons":{
+            "type":"object",
+            "properties":{
+                 "id":{
+                     "type":"number"
+                 },
+                "name":{
+                    "type":"string"
+                },
+                "image":{
+                    "type":"string"
+                },
+                "description":{
+                    "type":"string"
+                },
+                "season":{
+                    "type":"string"
+                },
+                "type":{
+                    "type":"string"
+                }                     
+            }
+        }
+           
+
        },
        "securitySchemes":{
            "bearerAuth":{
