@@ -6,9 +6,9 @@ export async function seed(knex: Knex): Promise<void> {
 
     const data ={      
         name: "pokemon",
-        image:faker.image.imageUrl(),
-        description: faker.lorem.sentence(), 
-        season:faker.name.firstName()
+        image:"https://img.icons8.com/color/512/000000/pokeball-2.png",
+        description: "The original Pokémon", 
+        season:"season 1"
     };
     
     // Inserts seed entries

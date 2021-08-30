@@ -16,7 +16,7 @@ interface PokemonProps{
 class pokemonRepository{
 
     getPokemons = async (offset:number,limit:number)=>  {
-       
+
         try{
             
             const result:PokemonProps[] = await  connection('pokemon_type_pivo')

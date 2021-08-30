@@ -1,16 +1,5 @@
 import connection from '../connection';
-
-interface Paginate{
-       offset:number;
-       limit:number; 
-}
-interface digimonProps{
-    id:number;
-    name:string;
-    image:string;
-    description:Text;
-    season:string;
-}
+import {DigimonProps} from '../typings';
 
 class digimonRepository{
 
@@ -18,7 +7,7 @@ class digimonRepository{
        
         try{
             
-            const result:digimonProps[] = await  connection('digimon_type_pivo')
+            const result:DigimonProps[] = await  connection('digimon_type_pivo')
             .innerJoin('digimons', 'digimons.id', '=', 'digimon_type_pivo.digimon_id')
             .innerJoin('digimon_type', 'digimon_type.id', '=', 'digimon_type_pivo.type_id')
             .select('digimons.*','digimon_type.type')
@@ -37,7 +26,7 @@ class digimonRepository{
     getAnDigimon = async (name:string)=>{
         try{
             
-            const result:digimonProps[] = await connection('digimon_type_pivo')
+            const result:DigimonProps[] = await connection('digimon_type_pivo')
             .innerJoin('digimons', 'digimons.id', '=', 'digimon_type_pivo.digimon_id')
             .innerJoin('digimon_type', 'digimon_type.id', '=', 'digimon_type_pivo.type_id')
             .select('digimons.*','digimon_type.type')
