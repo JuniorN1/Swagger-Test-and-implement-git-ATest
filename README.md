@@ -118,4 +118,4 @@ Project Link: [https://github.com/JuniorN1/Api-pokemon-and-digimons](https://git
 * [Img Shields](https://shields.io)
 * [GitHub Pages](https://pages.github.com)
 * [Font Awesome](https://fontawesome.com)
-* blah blah blah....
+
