@@ -110,7 +110,7 @@ Project Link: [https://github.com/JuniorN1/Api-pokemon-and-digimons](https://git
 ## 💡 Our valuable Contributors :
 
 <a href="https://github.com/JuniorN1/Api-pokemon-and-digimons/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=JuniorN1/Api-pokemon-and-digimons" />
+  <img src="https://contrib.rocks/image?repo=JuniorN1/Api-pokemon-and-digimons" />
 </a>
 
 <!-- ACKNOWLEDGEMENTS -->
