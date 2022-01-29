@@ -43,4 +43,4 @@ class DigimonRepository{
 
 }
 
-export default digimonRepository;
+export default DigimonRepository;
