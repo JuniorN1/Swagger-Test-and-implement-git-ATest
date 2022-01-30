@@ -27,9 +27,9 @@ services:
         context: .
         dockerfile: Dockerfile  
       command:
-          ./init.sh
+          yarn start
       volumes:
-          - .:/usr/app      
+          - /usr/app      
       ports:
         - "3000:3333"  
       networks:
