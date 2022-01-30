@@ -1,10 +1,10 @@
 version: '3.9'
  
 services:
-    database:
+    database_pokemon_digimon:
       image: mysql:5.7
 
-      container_name: api_database
+      container_name: database_pd
 
       environment:
         MYSQL_ROOT_PASSWORD: '${PASS_PROD}'
@@ -19,30 +19,28 @@ services:
         - 'dbdata:/var/lib/mysql'
   
       networks:
-       - mysql_network
+       - network_pd
 
-    api_rest:
-      container_name: api_rest
+    backend_pokemon_digimon:
+      container_name: backend_pd
       build:
         context: .
         dockerfile: Dockerfile  
       command:
-          yarn start
+          ./init.sh
       volumes:
           - .:/usr/app      
       ports:
         - "3000:3333"  
-      environment:
-        NODE_ENV: 'prod'  
       networks:
-        - mysql_network  
-    #   depends_on:
-    #       - database
+        - network_pd  
+      depends_on:
+          - database_pokemon_digimon
       mem_limit: 500m
       
 volumes:
   dbdata:
     driver: local
 networks:
-  mysql_network: 
+  network_pd: 
     driver: bridge

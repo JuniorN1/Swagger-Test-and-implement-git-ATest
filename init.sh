@@ -1,3 +1,4 @@
 #!/bin/bash
-yarn knex migrate:latest
+yarn
+yarn knex migrate:latest --env production
 yarn start

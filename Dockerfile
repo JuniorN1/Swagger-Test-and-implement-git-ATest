@@ -11,4 +11,4 @@ EXPOSE 3333
 
 RUN chmod 777 ./init.sh
 
-ENTRYPOINT ["./init.sh"]
+# ENTRYPOINT ["./init.sh"]
