@@ -1,7 +1,7 @@
 import connection from '../connection';
 import {DigimonProps} from '../typings';
 
-class digimonRepository{
+class DigimonRepository{
 
     getDigimons = async (offset:number,limit:number)=>  {
        
@@ -43,4 +43,4 @@ class digimonRepository{
 
 }
 
-export default digimonRepository;
+export default DigimonRepository;

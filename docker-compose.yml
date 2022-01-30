@@ -1,30 +1,46 @@
-version: '3'
+version: '3.9'
  
 services:
-  db:
-    image: mysql:5.7
-    container_name: db
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: api_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
-    ports:
-      - "3306:3306"
-    volumes:
-      - dbdata:/var/lib/mysql
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: pma
-    links:
-      - db
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      PMA_ARBITRARY: 1
-    restart: always
-    ports:
-      - 8080:80
-volumes:
+    database_pokemon_digimon:
+      image: mysql:5.7
 
+      container_name: database_pd
+
+      environment:
+        MYSQL_ROOT_PASSWORD: '${PASS_PROD}'
+        MYSQL_DATABASE: '${DB_PROD}'
+        MYSQL_USER: '${USER_PROD}'
+        MYSQL_PASSWORD: '${PASS_PROD}'
+
+      ports:
+        - "3306:3306"
+ 
+      volumes:
+        - 'dbdata:/var/lib/mysql'
+  
+      networks:
+       - network_pd
+
+    backend_pokemon_digimon:
+      container_name: backend_pd
+      build:
+        context: .
+        dockerfile: Dockerfile  
+      command:
+          yarn start
+      volumes:
+          - /usr/app      
+      ports:
+        - "3000:3333"  
+      networks:
+        - network_pd  
+      depends_on:
+          - database_pokemon_digimon
+      mem_limit: 500m
+      
+volumes:
   dbdata:
+    driver: local
+networks:
+  network_pd: 
+    driver: bridge
