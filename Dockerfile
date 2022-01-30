@@ -11,3 +11,7 @@ EXPOSE 3333
 
 RUN chmod 777 ./init.sh
 
+# this codes run migrate if database is in oter container
+# RUN sed -i -e 's/\r$//' init.sh
+
+# ENTRYPOINT ["./init.sh"]
