@@ -7,12 +7,13 @@ class JwtToken {
     }
 
     async generateToken(email: string): Promise<string | undefined> {
+        console.log(this.jwtSecret);
         try {
             return jwt.sign(
                 {
                     id: email,
                 },
-                "secret",
+                this.jwtSecret,
                 { expiresIn: "1h" }
             );
         } catch (error) {
@@ -23,7 +24,7 @@ class JwtToken {
     async verifyToken(token: string): Promise<string | JwtPayload | undefined> {
         // invalid token - synchronous
         try {
-            return jwt.verify(token, "wrong-secret");
+            return jwt.verify(token, this.jwtSecret);
         } catch (err) {
             console.log(err);
         }

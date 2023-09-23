@@ -19,7 +19,7 @@
                 "summary": "Login in systm",
                 "description": "This route is response login in system",
                 "tags": ["Authentication"],
-                "security": [{ "bewarerAuth": [] }],
+                "security": [{ "bearerAuth": [] }],
                 "produces": ["application/xml", "application/json"],
                 "operationId": "loginUser",
                 "requestBody": {
@@ -61,8 +61,28 @@
                 "summary": "Get list pokemons",
                 "description": "This route is response list pokemons",
                 "tags": ["Pokemons"],
-                "security": [{ "bewarerAuth": [] }],
+                "security": [{ "bearerAuth": [] }],
                 "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit the number of results per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset the results to start from a specific position",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "This is a list pokemon",
@@ -86,7 +106,7 @@
                 "summary": "Get a specific pokemons",
                 "description": "This endpoint is response to return specific search the pokemon name",
                 "tags": ["Pokemons"],
-                "security": [{ "bewarerAuth": [] }],
+                "security": [{ "bearerAuth": [] }],
                 "produces": ["application/xml", "application/json"],
                 "parameters": [
                     {
@@ -120,7 +140,7 @@
                 "summary": "show list digimons",
                 "description": "This endpoint is response to return list digimons",
                 "tags": ["Digimons"],
-                "security": [{ "bewarerAuth": [] }],
+                "security": [{ "bearerAuth": [] }],
                 "produces": ["application/xml", "application/json"],
 
                 "responses": {
@@ -146,7 +166,7 @@
                 "summary": "search digimon by name",
                 "description": "This endpoint is response to return a especific digimon",
                 "tags": ["Digimons"],
-                "security": [{ "bewarerAuth": [] }],
+                "security": [{ "bearerAuth": [] }],
                 "produces": ["application/xml", "application/json"],
                 "parameters": [
                     {

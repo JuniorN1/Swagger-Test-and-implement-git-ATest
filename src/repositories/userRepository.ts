@@ -1,25 +1,23 @@
 import connection from "../connection";
+import { UserProps } from "../typings";
 
-interface UserProps {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-    role_id: string;
-    created_at: string;
-    updated_at: string;
-    deleted_at: string;
-}
+
 class UserRepository {
-    async login(email: string, password: string): Promise<any | unknown> {
-        try {
-            // TODO: need to implement bcrypt for match login
-            const result: UserProps = await connection("users")
-                .select("password")
-                .where("email", email)
-                .first();
-            return result;
-        } catch (error) {}
+    async login(email: string, password: string): Promise<UserProps | unknown> {
+        // TODO: need to implement bcrypt for match login
+        const result: UserProps = await connection("users")
+            .select("*")
+            .where("email", email)
+            .first();
+        return result;
+    }
+
+    async getUserByEmail(email: string): Promise<UserProps | unknown> {
+        const result: UserProps = await connection("users")
+            .select("*")
+            .where("email", email)
+            .first();
+        return result;
     }
 }
 
