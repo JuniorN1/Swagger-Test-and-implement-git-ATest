@@ -5,6 +5,7 @@ export async function seed(knex: Knex): Promise<void> {
     await knex("pokemons").del();
 
     const data = {
+        id: 1,
         name: "pokemon",
         image: "https://img.icons8.com/color/512/000000/pokeball-2.png",
         description: "The original Pokémon",

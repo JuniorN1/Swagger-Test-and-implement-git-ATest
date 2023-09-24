@@ -5,6 +5,7 @@ export async function seed(knex: Knex): Promise<void> {
     await knex("pokemon_type_pivo").del();
 
     const data = {
+        id: 1,
         pokemon_id: 1,
         type_id: 1,
     };

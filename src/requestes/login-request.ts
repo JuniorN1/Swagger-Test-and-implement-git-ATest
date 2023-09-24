@@ -1,5 +1,6 @@
-import * as yup from "yup";
 import { NextFunction, Request, Response } from "express";
+import * as yup from "yup";
+
 import { YupErrorProps } from "../typings";
 
 class LoginRequest {
@@ -17,7 +18,6 @@ class LoginRequest {
             const teste = await schema.validate(request.body, {
                 abortEarly: false,
             });
-            console.log(teste);
             next();
         } catch (validateError) {
             const { errors } = validateError as YupErrorProps;

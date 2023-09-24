@@ -142,7 +142,26 @@
                 "tags": ["Digimons"],
                 "security": [{ "bearerAuth": [] }],
                 "produces": ["application/xml", "application/json"],
-
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit the number of results per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset the results to start from a specific position",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "List of Digimons",

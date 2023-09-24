@@ -14,13 +14,16 @@ describe("Digimons", () => {
             type: "anime",
         },
     ];
+    
     afterAll(async () => {
         connection.destroy();
     });
+
     it("user can list all digimin with correct params", async () => {
         const response = await request(app)
             .get("/v1/digimons")
             .query({ limit: 10, offset: 0 });
+
         expect(response.status).toBe(200);
         const result = JSON.parse(response.text);
         expect(result).toEqual(resultExpective);

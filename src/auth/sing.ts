@@ -1,4 +1,4 @@
-import jwt, { JwtPayload, Secret } from "jsonwebtoken";
+import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 
 class JwtToken {
     private readonly jwtSecret: Secret;
@@ -7,7 +7,6 @@ class JwtToken {
     }
 
     async generateToken(email: string): Promise<string | undefined> {
-        console.log(this.jwtSecret);
         try {
             return jwt.sign(
                 {
