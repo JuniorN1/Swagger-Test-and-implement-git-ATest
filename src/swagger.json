@@ -27,12 +27,12 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/LoginRequest"
+                                "$ref": "#/components/schemas/Login"
                             }
                         },
                         "application/xml": {
                             "schema": {
-                                "$ref": "#/components/schemas/LoginRequest"
+                                "$ref": "#/components/schemas/Login"
                             }
                         }
                     },
@@ -41,6 +41,48 @@
                 "responses": {
                     "200": {
                         "description": "This is login a user in system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "summary": "Register new user in system",
+                "description": "This route is response register new user in system",
+                "tags": ["Authentication"],
+                "security": [{ "bearerAuth": [] }],
+                "produces": ["application/xml", "application/json"],
+                "operationId": "registerUser",
+                "requestBody": {
+                    "description": "This route is response register new user in system",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Register"
+                            }
+                        },
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Register"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "This route is response register new user in system",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -218,7 +260,7 @@
 
     "components": {
         "schemas": {
-            "LoginRequest": {
+            "Login": {
                 "type": "object",
                 "properties": {
                     "email": {
@@ -227,6 +269,25 @@
                     "password": {
                         "type": "string"
                     }
+                }
+            },
+            "Register": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "example":{
+                    "name": "Joe Smith",
+                    "email": "joe@smith.com",
+                    "password": "Password1!"
                 }
             },
             "User": {

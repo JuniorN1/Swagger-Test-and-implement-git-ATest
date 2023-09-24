@@ -1,56 +1,92 @@
 // Update with your config settings.
-require('dotenv').config();
+require("dotenv").config();
 interface KnexConfig {
-  [key: string]: object;
-};
-
+    [key: string]: object;
+}
+// TODO: Check driver marianDB
 const knexConfig: KnexConfig = {
+    test: {
+        client: "mysql",
+        connection: {
+            host: process.env.DATABASE_HOST_TEST,
+            user: process.env.DATABASE_USERNAME_TEST,
+            password: process.env.DATABASE_PASSWORD_TEST,
+            database: process.env.DATABASE_NAME_TEST,
+            port: process.env.DATABASE_PORT_TEST
+        },
+        pool: {
+            min: 2,
+            max: 10,
+        },
+        migrations: {
+            directory: "./src/database/migrations",
+        },
+        seeds: {
+            directory: "./src/database/seeders",
+        },
+    },
+    development: {
+        client: "mysql",
+        connection: {
+            host: process.env.DATABASE_HOST,
+            user: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD,
+            database: process.env.DATABASE_NAME,
+            port: process.env.DATABASE_PORT
+        },
+        pool: {
+            min: 2,
+            max: 10,
+        },
+        migrations: {
+            directory: "./src/database/migrations",
+        },
+        seeds: {
+            directory: "./src/database/seeders",
+        },
+    },
+    staging: {
+        client: "mysql",
+        connection: {
+            host: process.env.DATABASE_HOST,
+            user: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD,
+            database: process.env.DATABASE_NAME,
+            port: process.env.DATABASE_PORT
+        },
+        pool: {
+            min: 2,
+            max: 10,
+        },
+        migrations: {
+            directory: "./src/database/migrations",
+        },
+        seeds: {
+            directory: "./src/database/seeders",
+        },
+    },
 
-  development: {
-    client: 'sqlite3',
-    connection: process.env.DB_TEST,  
-    migrations: {
-      directory: './src/database/migrations',
+    production: {
+        client: "mysql",
+        connection: {
+            host: process.env.HOST_PROD,
+            user: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD,
+            database: process.env.DATABASE_NAME,
+            port: process.env.DATABASE_PORT
+        },
+        pool: {
+            min: 2,
+            max: 10,
+        },
+        migrations: {
+            directory: "./src/database/migrations",
+        },
+        seeds: {
+            directory: "./src/database/seeders",
+        },
     },
-    seeds: {
-      directory: './src/database/seeders',
-    },
-    useNullAsDefault:true,
-  },
-   
- 
-  staging: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: "knex_migrations"
-    }
-  },
-
-  production: {
-    client: 'mysql',
-    connection: {
-      host : process.env.HOST_PROD,
-      user : process.env.USER_PROD,
-      password :process.env.PASS_PROD,
-      database : process.env.DB_PROD
-    },
-    migrations: {
-      directory: './src/database/migrations',
-    },
-    seeds: {
-      directory: './src/database/seeders',
-    },
-  }
-
 };
 
 export default knexConfig;
+

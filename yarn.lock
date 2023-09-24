@@ -3927,6 +3927,11 @@ sqlite3@^5.1.6:
   optionalDependencies:
     node-gyp "8.x"
 
+sqlite@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/sqlite/-/sqlite-5.0.1.tgz#4b0fcb1e13d665b073b9b53cb8357a1055f5c7ea"
+  integrity sha512-sRxbVwzNX9rvEPnxz9scNqi60KtfxBXMzzus5BI4+0nPtVkyEXyBwQ7JkM2M1CiVvEFw6s1vn2Z9/1DEdSpiaA==
+
 sqlstring@2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/sqlstring/-/sqlstring-2.3.1.tgz#475393ff9e91479aea62dcaf0ca3d14983a7fb40"

@@ -1,14 +1,14 @@
 import { Router } from "express";
 import swaggerUi from "swagger-ui-express";
 
+import AuthController from "./controller/authentication";
 import DigimonController from "./controller/digimon";
-import AuthController from "./controller/login";
 import PokemonController from "./controller/pokemon";
 import LoginRequest from "./requestes/login-request";
 import PaginateRequest from "./requestes/paginate-request";
 import SearchRequest from "./requestes/search-request";
+import RegisterRequest from "./requestes/register-request";
 
-// import AuthMiddleware from './middleware/auth-middleware';
 const router = Router();
 
 const swaggerDocument = require("./swagger.json");
@@ -18,11 +18,16 @@ const digimonController = new DigimonController();
 const paginateRequest = new PaginateRequest();
 const searchRequest = new SearchRequest();
 const authController = new AuthController();
-// const authMiddleware = new AuthMiddleware();
 const loginRequest = new LoginRequest();
-
+const registerRequest = new RegisterRequest();
+// Swagger documentation
 router.use("/v1/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Authentications routes
 router.use("/v1/login", loginRequest.validateRequest, authController.login);
+router.use("/v1/register", registerRequest.validateRequest, authController.register);
+
+// Pokemons routes
 router.get(
     "/v1/pokemons",
 
@@ -34,6 +39,8 @@ router.get(
     searchRequest.validateRequest,
     pokemonController.show
 );
+
+//  Digimon routes
 router.get(
     "/v1/digimons",
     paginateRequest.validateRequest,

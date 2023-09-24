@@ -19,8 +19,19 @@ class AuthController {
     }
 
     async register(request: Request, response: Response) {
-        const { email, name, password } = request.params
-            .name as unknown as RegisterProps;
+        const { email, name, password } =
+            request.body as unknown as RegisterProps;
+        const userRepository = new UserRepository();
+
+        const userData: RegisterProps = {
+            email: email,
+            name: name,
+            password: password,
+            role_id: 1, // TODO: i will remove this and add real logic
+        };
+
+        const newUser = await userRepository.register(userData);
+        return response.status(201).json({ newUser: newUser });
     }
 }
 export default AuthController;
