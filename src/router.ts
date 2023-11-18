@@ -1,22 +1,49 @@
-import {Router} from 'express';
-import swaggerUi from 'swagger-ui-express';
-import pokemonController from './controller/pokemon';
-import digimonController from './controller/digimon';
-import paginateRequest from './requestes/paginateRequest';
-import searchRequest from './requestes/searchRequest';
+import { Router } from "express";
+import swaggerUi from "swagger-ui-express";
+
+import DigimonController from "./controller/digimon";
+import AuthController from "./controller/login";
+import PokemonController from "./controller/pokemon";
+import LoginRequest from "./requestes/login-request";
+import PaginateRequest from "./requestes/paginate-request";
+import SearchRequest from "./requestes/search-request";
+
+// import AuthMiddleware from './middleware/auth-middleware';
 const router = Router();
 
-const swaggerDocument = require('./swagger.json');
+const swaggerDocument = require("./swagger.json");
 
-const PokemonController = new pokemonController();
-const DigimonController = new digimonController();
-const PaginateRequest   = new paginateRequest();
-const SearchRequest     = new searchRequest();
+const pokemonController = new PokemonController();
+const digimonController = new DigimonController();
+const paginateRequest = new PaginateRequest();
+const searchRequest = new SearchRequest();
+const authController = new AuthController();
+// const authMiddleware = new AuthMiddleware();
+const loginRequest = new LoginRequest();
 
-router.use('/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-router.get('/v1/pokemons',PaginateRequest.validateRequest,PokemonController.index);
-router.get('/v1/pokemon/:name',SearchRequest.validateRequest,PokemonController.show);
-router.get('/v1/digimons',PaginateRequest.validateRequest ,DigimonController.index);
-router.get('/v1/digimon/:name',SearchRequest.validateRequest,DigimonController.show);
+router.use("/v1/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+router.use("/v1/login", loginRequest.validateRequest, authController.login);
+router.get(
+    "/v1/pokemons",
 
-export{router}
+    paginateRequest.validateRequest,
+    pokemonController.index
+);
+router.get(
+    "/v1/pokemon/:name",
+    searchRequest.validateRequest,
+    pokemonController.show
+);
+router.get(
+    "/v1/digimons",
+    paginateRequest.validateRequest,
+    digimonController.index
+);
+router.get(
+    "/v1/digimon/:name",
+    searchRequest.validateRequest,
+    digimonController.show
+);
+
+export { router };
+
